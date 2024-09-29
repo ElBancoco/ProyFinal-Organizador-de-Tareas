@@ -1,4 +1,43 @@
+body{
+    font-family:Arial, Helvetica, sans-serif Times, serif;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+header {
+    display: flex;
+    min-width: none;height: 70px;
+    background-color: rgb(253, 190, 248);
+   justify-content: space-between;
+   align-items: center;
+   padding: 10px;
+}
+.logo{
+    display: flex;
+    align-items: center;
+}
+.logo img{
+height: 50px;
+margin-right: 10px;
+} 
+nav a{
+    font-weight: 600;
+    padding-right: 10px;
+}
+nav a:hover{
+    color: white;
+}
+  @media (max-width:700px){
+header{
+  flex-direction: column;
+}
 
+  nav{
+    padding: 10px 0px;
+   }
+  }
 
 
 /* Estilos de la seccion principal */
