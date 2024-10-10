@@ -14,6 +14,12 @@ export const BotonAgregar = () => {
     setValorInput(event.target.value);
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleAgregarTarea();
+    }
+  };
+
   // Maneja el clic del botón para agregar la tarea
   const handleAgregarTarea = () => {
     const tareaNormalizada = valorInput.trim();
@@ -60,44 +66,47 @@ export const BotonAgregar = () => {
     setContadorPendientes(tareas.filter(tarea => !tarea.completada).length);
   }, [tareas]);
 
-  // Maneja el evento de la tecla "Enter" para agregar tareas
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      handleAgregarTarea();
-    }
-  };
-
   return (
-    <>
-      <input
-        type="text"
-        value={valorInput}
-        onChange={handleInputChange}
-        onKeyPress={handleKeyPress} // Detecta cuando se presiona Enter
-        placeholder="Introduce una tarea"
-      />
-      <button className="btn-agregar" onClick={handleAgregarTarea}>
-        Agregar tarea
-      </button>
+    <div className="container">
+      <h1>Gestor de Tareas</h1>
+      
+      {/* Sección de input y botón siempre visibles */}
+      <div className="input-section">
+        <input
+          type="text"
+          value={valorInput}
+          onChange={handleInputChange}
+          onKeyPress={handleKeyPress}
+          placeholder="Introduce una tarea"
+        />
+        <button className="btn-agregar" onClick={handleAgregarTarea}>
+          Agregar tarea
+        </button>
+      </div>
+
+      {/* Contadores */}
       <div>
         <p>Total de tareas: {contadorTareas}</p>
         <p>Tareas pendientes: {contadorPendientes}</p>
       </div>
+
+      {/* Lista de tareas con scroll */}
       <ul className="lista-tareas">
-        {tareas.map((tarea, index) => (
-          <li key={index} className="tarea">
-            <input
-              type="checkbox"
-              checked={tarea.completada}
-              onChange={() => handleCheckboxChange(index)}
-            />
-            {tarea.texto}
-            <button onClick={() => handleEditarTarea(index)}>Editar</button>
-            <button onClick={() => handleBorrarTarea(index)}>Borrar</button>
-          </li>
-        ))}
-      </ul>
-    </>
+  {tareas.map((tarea, index) => (
+    <li key={index} className="tarea">
+      <input
+        type="checkbox"
+        checked={tarea.completada}
+        onChange={() => handleCheckboxChange(index)}
+      />
+      <span>{tarea.texto}</span>
+      <div className="botones-tarea">
+        <button onClick={() => handleEditarTarea(index)}>Editar</button>
+        <button onClick={() => handleBorrarTarea(index)}>Borrar</button>
+      </div>
+    </li>
+  ))}
+</ul>
+    </div>
   );
 };
-    
