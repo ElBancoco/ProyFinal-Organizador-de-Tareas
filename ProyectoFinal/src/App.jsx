@@ -1,17 +1,13 @@
-import { Lista } from "./componentes/Lista"
+import React from 'react';
+import { BotonAgregar } from './componentes/BotonAgregar';
 
 function App() {
-
-
   return (
-    <>
-     
-      <h3>tareas : 3</h3>
-      <h3>pendientes : 2</h3> 
-      <Lista/>
-
-    </>
-  )
+    <div className="App">
+      <h1>Gestor de Tareas</h1>
+      <BotonAgregar />
+    </div>
+  );
 }
 
-export default App
+export default App;
